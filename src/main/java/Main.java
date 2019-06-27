@@ -16,7 +16,6 @@ public class Main {
 
         printList(myFiveList);
 
-        myFiveList.add("Error");
 
         System.out.println(myFiveList.get(3));
 
@@ -24,29 +23,29 @@ public class Main {
             System.out.println("pepe found");
         }
 
-
-        myFiveList.remove(3);
-        printList(myFiveList);
         System.out.println("              ");
-        myFiveList.remove(3);
-        printList(myFiveList);
 
-
-        System.out.println("              ");
         myFiveList.remove(0);
         printList(myFiveList);
-        System.out.println("              ");
-
-        myFiveList.add("holaqase");
-        printList(myFiveList);
-
-
+//        myFiveList.remove(3);
+//        printList(myFiveList);
+//
+//
+//        System.out.println("              ");
+//        myFiveList.remove(0);
+//        printList(myFiveList);
+//        System.out.println("              ");
+//
+//        myFiveList.add("holaqase");
+//        printList(myFiveList);
+//
+//
 
     }
 
     private static void printList(DamianList myFiveList) {
 
-        for (int i = 0; i < myFiveList.getSize(); i++) {
+        for (int i = 0; i < myFiveList.size(); i++) {
             System.out.println(i + ". " + myFiveList.get(i));
         }
     }

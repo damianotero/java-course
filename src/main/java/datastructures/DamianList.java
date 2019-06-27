@@ -1,50 +1,48 @@
 package datastructures;
 
-public class DamianList {
+public class DamianList<T> {
 
-    private int capacity;
-    private String[] myArray;
+    private T[] data;
     private int size=0;
 
     public DamianList(int capacity) {
-        this.capacity = capacity;
-        this.myArray = new String[capacity];
+        this.data = (T[]) new Object[capacity];
     }
 
 
-    public void add(String name) {
-        if (getSize() == capacity) {
-            System.out.println("List full");
+    public void add(T name) {
+        if (size == data.length) {
+            throw new RuntimeException("List full ");
         } else {
-            myArray[getSize()] = name;
+            data[size()] = name;
             size++;
         }
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
 
     public void remove(int position) {
 
-        if (position > myArray.length || position<0){
+        if (position > data.length || position<0){
             throw new IndexOutOfBoundsException("Wrong index " + position);
-        } else if(myArray[position] == null) {
-            System.out.println("Position empty!");
+        } else if(data[position] == null) {
+            throw new RuntimeException(position + " is empty!");
         } else {
-            for (int i = position; i < myArray.length-1; i++) {
-                myArray[i] = myArray[i + 1];
+            for (int i = position; i < data.length-1; i++) {
+                data[i] = data[i + 1];
             }
-            myArray[myArray.length-1]=null;
+            data[data.length-1]=null;
             size--;
         }
 
     }
 
     public boolean contains(String name) {
-        for (int i = 0; i < capacity; i++) {
-            if (myArray[i].equalsIgnoreCase(name)) {
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(name)) {
                 return true;
             }
         }
@@ -53,8 +51,8 @@ public class DamianList {
 
 
 
-    public String get(int position) {
-        return myArray[position];
+    public T get(int position) {
+        return data[position];
 
     }
 
