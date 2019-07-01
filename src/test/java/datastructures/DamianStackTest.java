@@ -47,6 +47,15 @@ public class DamianStackTest {
         assertThat(myIntStack.contains(2)).isEqualTo(true);
     }
 
+    @Test
+    public void whenStackDoesntContainsItem_ThenReturnTrue() {
+        myIntStack = new DamianStack<>(3);
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        assertThat(myIntStack.contains(4)).isEqualTo(false);
+    }
+
     @Test(expected = RuntimeException.class)
     public void whenPopWhenStackIsEmpty_ThenThrowException() {
         myIntStack = new DamianStack<>(3);
