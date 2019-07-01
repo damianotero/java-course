@@ -1,54 +1,31 @@
-import datastructures.DamianList;
+import datastructures.DamianStack;
 
 public class Main {
 
     public static void main(String[] args) {
 
 
-        DamianList myFiveList = new DamianList(5);
+        DamianStack<Integer> myIntStack = new DamianStack<>(5);
 
-        myFiveList.add("Roi");
-        myFiveList.add("Damian");
-        myFiveList.add("Vodka");
-        myFiveList.add("Pepe");
-        myFiveList.add("Lola");
-
-
-        printList(myFiveList);
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.push(3);
+        myIntStack.push(4);
 
 
-        System.out.println(myFiveList.get(3));
 
-        if (myFiveList.contains("Pepe")) {
-            System.out.println("pepe found");
-        }
 
-        System.out.println("              ");
+        System.out.println("   ");
 
-        myFiveList.remove(0);
-        printList(myFiveList);
-//        myFiveList.remove(3);
-//        printList(myFiveList);
-//
-//
-//        System.out.println("              ");
-//        myFiveList.remove(0);
-//        printList(myFiveList);
-//        System.out.println("              ");
-//
-//        myFiveList.add("holaqase");
-//        printList(myFiveList);
-//
-//
+
+        System.out.println(myIntStack.pop());
+        System.out.println(myIntStack.pop());
+        System.out.println(myIntStack.pop());
+        System.out.println(myIntStack.pop());
+        System.out.println(myIntStack.pop());
+
+
 
     }
-
-    private static void printList(DamianList myFiveList) {
-
-        for (int i = 0; i < myFiveList.size(); i++) {
-            System.out.println(i + ". " + myFiveList.get(i));
-        }
-    }
-
-
 }
