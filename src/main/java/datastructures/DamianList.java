@@ -2,21 +2,27 @@ package datastructures;
 
 public class DamianList<T> {
 
+    private static final int DEFAULT_CAPACITY = 10;
     private T[] data;
-    private int size=0;
+    private int size = 0;
+
+    public DamianList() {
+        this(DEFAULT_CAPACITY);
+    }
 
     public DamianList(int capacity) {
         this.data = (T[]) new Object[capacity];
     }
 
-
     public void add(T name) {
-        if (size == data.length) {
-            throw new RuntimeException("List full ");
-        } else {
-            data[size()] = name;
-            size++;
+        if (size >= data.length) {
+            T[] data2 = (T[]) new Object[data.length * 2];
+            for (int i = 0; i < data.length; i++) {
+                data2[i] = data[i];
+            }
+            data = data2;
         }
+        data[size++] = name;
     }
 
     public int size() {
@@ -24,20 +30,19 @@ public class DamianList<T> {
     }
 
 
-    public void remove(int position) {
+    public void remove(int position) { //TODO REDUCE ARRAY CAPACITY TO HALF WHEN SIZE IS 25%
 
-        if (position > data.length || position<0){
+        if (position > data.length || position < 0) {
             throw new IndexOutOfBoundsException("Wrong index " + position);
-        } else if(data[position] == null) {
+        } else if (data[position] == null) {
             throw new RuntimeException(position + " is empty!");
         } else {
-            for (int i = position; i < data.length-1; i++) {
+            for (int i = position; i < data.length - 1; i++) {
                 data[i] = data[i + 1];
             }
-            data[data.length-1]=null;
+            data[data.length - 1] = null;
             size--;
         }
-
     }
 
     public boolean contains(String name) {
@@ -49,11 +54,8 @@ public class DamianList<T> {
         return false;
     }
 
-
-
     public T get(int position) {
         return data[position];
-
     }
 
 }

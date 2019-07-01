@@ -11,7 +11,7 @@ public class DamianListTest {
 
     @Before
     public void setUp() throws Exception {
-        damianList = new DamianList<>(3);
+        damianList = new DamianList<>();
 
     }
 
@@ -22,13 +22,6 @@ public class DamianListTest {
         assertThat(damianList.size()).isEqualTo(1);
     }
 
-    @Test(expected = RuntimeException.class)
-    public void whenAddingMoreItemsThanSize_ThenThrowException() {
-        damianList.add("Roi1");
-        damianList.add("Roi2");
-        damianList.add("Roi3");
-        damianList.add("Roi4");
-    }
 
     @Test
     public void whenGettingAnItemFromPosition_ThenReturnName() {
@@ -68,14 +61,23 @@ public class DamianListTest {
         assertThat(damianList.size()).isEqualTo(2);
     }
 
-    @Test (expected = RuntimeException.class)
+    @Test(expected = RuntimeException.class)
     public void whenRemovingAPositionOutOfBounds_ThenThrowException() {
-        damianList.remove(8);
+        damianList.remove(18);
     }
 
-    @Test (expected = RuntimeException.class)
+    @Test(expected = RuntimeException.class)
     public void whenRemovingAPositionEmpty_ThenThrowException() {
         damianList.add("Roi0");
         damianList.remove(1);
+    }
+
+    @Test
+    public void WhenAddingAnItem_ThenArrayGetsBigger() {
+        for (int i = 0; i < 11; i++) {
+            damianList.add(String.valueOf(i));
+        }
+
+        assertThat(damianList.size()).isEqualTo(11);
     }
 }
