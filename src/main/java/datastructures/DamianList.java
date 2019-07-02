@@ -30,7 +30,7 @@ public class DamianList<T> {
     }
 
 
-    public void remove(int position) { //TODO REDUCE ARRAY CAPACITY TO HALF WHEN SIZE IS 25%
+    public void remove(int position) {
 
         if (position > data.length || position < 0) {
             throw new IndexOutOfBoundsException("Wrong index " + position);
