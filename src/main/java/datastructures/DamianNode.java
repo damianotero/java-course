@@ -17,9 +17,6 @@ public class DamianNode<T> {
         return value;
     }
 
-    public void setValue(T value) {
-        this.value = value;
-    }
 
     public void setNext(DamianNode<T> next) {
         this.next = next;
