@@ -33,4 +33,13 @@ public class DamianLinkedListTest {
         integerDamianLinkedList.remove(1);
         assertThat(integerDamianLinkedList.get(1)).isEqualTo(3);
     }
+
+    @Test
+    public void whenAddToPosition_ThenGetReturnsOk() {
+        integerDamianLinkedList.add(1);
+        integerDamianLinkedList.add(2);
+        integerDamianLinkedList.add(3);
+        integerDamianLinkedList.addToPosition(2,99);
+        assertThat(integerDamianLinkedList.get(2)).isEqualTo(99);
+    }
 }

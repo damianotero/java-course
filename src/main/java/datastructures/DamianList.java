@@ -14,15 +14,34 @@ public class DamianList<T> {
         this.data = (T[]) new Object[capacity];
     }
 
-    public void add(T name) {
-        if (size >= data.length) {
-            T[] data2 = (T[]) new Object[data.length * 2];
-            for (int i = 0; i < data.length; i++) {
-                data2[i] = data[i];
-            }
-            data = data2;
+    public void add(T value) {
+        if (size == data.length) {
+            data = grow();
         }
-        data[size++] = name;
+        data[size++] = value;
+    }
+
+    private T[] grow() {
+        T[] copy = (T[]) new Object[data.length * 2];
+        for (int i = 0; i < data.length; i++) {
+            copy[i] = data[i];
+        }
+        return copy;
+    }
+
+    public void addToPosition(int position, T value) {
+        if (position > size || position < 0) {
+            throw new IndexOutOfBoundsException("Wrong index " + position);
+        }
+        if (size == data.length) {
+            data = grow();
+        }
+
+        for (int i = size - 1; i > position; i--) {
+            data[i] = data[i - 1];
+        }
+        data[position] = value;
+        size++;
     }
 
     public int size() {
@@ -32,9 +51,9 @@ public class DamianList<T> {
 
     public void remove(int position) {
 
-        if (position > data.length || position < 0) {
-            throw new IndexOutOfBoundsException("Wrong index " + position);
-        } else if (data[position] == null) {
+        checkBounds(position);
+
+        if (data[position] == null) {
             throw new RuntimeException(position + " is empty!");
         } else {
             for (int i = position; i < data.length - 1; i++) {
@@ -42,6 +61,12 @@ public class DamianList<T> {
             }
             data[data.length - 1] = null;
             size--;
+        }
+    }
+
+    private void checkBounds(int position) {
+        if (position > data.length || position < 0) {
+            throw new IndexOutOfBoundsException("Wrong index " + position);
         }
     }
 

@@ -80,4 +80,39 @@ public class DamianListTest {
 
         assertThat(damianList.size()).isEqualTo(11);
     }
+
+
+    @Test
+    public void whenAddToPosition_ThenGetReturnsOk() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.add("Roi2");
+        damianList.add("Roi3");
+        damianList.addToPosition(2, "Added");
+        assertThat(damianList.get(2)).isEqualTo("Added");
+    }
+
+    @Test
+    public void whenAddToPositionAndArrayIsFull_ThenArrayDuplicatesLength() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.add("Roi2");
+        damianList.add("Roi3");
+        damianList.add("Roi4");
+        damianList.addToPosition(5, "Roi5");
+        damianList.add("Roi6");
+        damianList.add("Roi7");
+        damianList.add("Roi8");
+        damianList.add("Roi9");
+        damianList.addToPosition(3, "Roi10");
+        assertThat(damianList.get(19)).isEqualTo(null);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void whenAddToPositionGreaterThanSize_ThenThrowException() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.addToPosition(6, "Error");
+    }
+
 }
