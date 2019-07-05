@@ -10,7 +10,7 @@ public class DamianStackTest {
 
     @Test
     public void whenPushObject_ThenSizeGetsHigher() {
-        myIntStack = new DamianStack<>(5);
+        myIntStack = new DamianStack<>();
         myIntStack.push(0);
         myIntStack.push(1);
         myIntStack.push(2);
@@ -18,19 +18,10 @@ public class DamianStackTest {
         assertThat(myIntStack.getSize()).isEqualTo(3);
     }
 
-    @Test(expected = RuntimeException.class)
-    public void ifPushWhenStackIsFull_ThenThrowException() {
-        myIntStack = new DamianStack<>(3);
-        myIntStack.push(0);
-        myIntStack.push(1);
-        myIntStack.push(2);
-        myIntStack.push(3);
-
-    }
 
     @Test
     public void whenPopObject_ThenSizeGetsShorter() {
-        myIntStack = new DamianStack<>(3);
+        myIntStack = new DamianStack<>();
         myIntStack.push(0);
         myIntStack.push(1);
         myIntStack.push(2);
@@ -40,7 +31,7 @@ public class DamianStackTest {
 
     @Test
     public void whenStackContainsItem_ThenReturnTrue() {
-        myIntStack = new DamianStack<>(3);
+        myIntStack = new DamianStack<>();
         myIntStack.push(0);
         myIntStack.push(1);
         myIntStack.push(2);
@@ -49,7 +40,7 @@ public class DamianStackTest {
 
     @Test
     public void whenStackDoesntContainsItem_ThenReturnTrue() {
-        myIntStack = new DamianStack<>(3);
+        myIntStack = new DamianStack<>();
         myIntStack.push(0);
         myIntStack.push(1);
         myIntStack.push(2);
@@ -58,16 +49,67 @@ public class DamianStackTest {
 
     @Test(expected = RuntimeException.class)
     public void whenPopWhenStackIsEmpty_ThenThrowException() {
-        myIntStack = new DamianStack<>(3);
+        myIntStack = new DamianStack<>();
         myIntStack.pop();
     }
 
     @Test
     public void whenGetSize_ThenReturnSize() {
-        myIntStack = new DamianStack<>(3);
+        myIntStack = new DamianStack<>();
         myIntStack.push(0);
         myIntStack.push(1);
         myIntStack.push(2);
         assertThat(myIntStack.getSize()).isEqualTo(3);
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void whenPushAPositionGreaterThanSizeOrLessThanZero_ThenThrowException() {
+        myIntStack = new DamianStack<>();
+        myIntStack.push(0);
+        myIntStack.addToPosition(4, 3);
+    }
+
+    @Test
+    public void whenAddToPositionAndStackIsFull_ThenItGrows() {
+        myIntStack = new DamianStack<>();
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.push(0);
+        myIntStack.addToPosition(2, 0);
+        assertThat(myIntStack.getSize()).isEqualTo(11);
+    }
+
+    @Test
+    public void whenAddToPosition_ThenGetReturnsPosition() {
+        myIntStack = new DamianStack<>();
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.addToPosition(0,99);
+        assertThat(myIntStack.get(0)).isEqualTo(99);
+
+    }
+    @Test
+    public void whenPushAndStackIsFull_ThenItGrows() {
+        myIntStack = new DamianStack<>();
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.push(0);
+        myIntStack.push(1);
+        myIntStack.push(2);
+        myIntStack.push(0);
+        myIntStack.push( 0);
+        assertThat(myIntStack.getSize()).isEqualTo(11);
     }
 }

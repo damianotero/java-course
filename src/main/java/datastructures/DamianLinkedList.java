@@ -1,6 +1,6 @@
 package datastructures;
 
-public class DamianLinkedList<T> {//TODO CREATE DEFAULT CAPACITY TO ALL LIST
+public class DamianLinkedList<T> {
 
     private DamianNode<T> head;
     private int size = 0;
