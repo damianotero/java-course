@@ -19,7 +19,7 @@ public class DamianLinkedList<T> {
         size++;
     }
 
-    public void addToPosition(int position, T value) {
+    public void add(int position, T value) {
         DamianNode<T> newNode = new DamianNode<>(value);
         if (position == 0) {
             newNode.setNext(head);

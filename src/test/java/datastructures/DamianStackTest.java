@@ -66,7 +66,7 @@ public class DamianStackTest {
     public void whenPushAPositionGreaterThanSizeOrLessThanZero_ThenThrowException() {
         myIntStack = new DamianStack<>();
         myIntStack.push(0);
-        myIntStack.addToPosition(4, 3);
+        myIntStack.add(4, 3);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DamianStackTest {
         myIntStack.push(1);
         myIntStack.push(2);
         myIntStack.push(0);
-        myIntStack.addToPosition(2, 0);
+        myIntStack.add(2, 0);
         assertThat(myIntStack.getSize()).isEqualTo(11);
     }
 
@@ -92,7 +92,7 @@ public class DamianStackTest {
         myIntStack.push(0);
         myIntStack.push(1);
         myIntStack.push(2);
-        myIntStack.addToPosition(0,99);
+        myIntStack.add(0,99);
         assertThat(myIntStack.get(0)).isEqualTo(99);
 
     }

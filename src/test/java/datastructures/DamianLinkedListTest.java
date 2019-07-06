@@ -39,7 +39,16 @@ public class DamianLinkedListTest {
         integerDamianLinkedList.add(1);
         integerDamianLinkedList.add(2);
         integerDamianLinkedList.add(3);
-        integerDamianLinkedList.addToPosition(2,99);
+        integerDamianLinkedList.add(2,99);
         assertThat(integerDamianLinkedList.get(2)).isEqualTo(99);
+    }
+
+    @Test
+    public void whenAddtoPosition0_ThenHeadEqualsTheValue() {
+        integerDamianLinkedList.add(1);
+        integerDamianLinkedList.add(2);
+        integerDamianLinkedList.add(3);
+        integerDamianLinkedList.add(0,99);
+        assertThat(integerDamianLinkedList.get(0)).isEqualTo(99);
     }
 }

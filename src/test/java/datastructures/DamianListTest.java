@@ -88,7 +88,7 @@ public class DamianListTest {
         damianList.add("Roi1");
         damianList.add("Roi2");
         damianList.add("Roi3");
-        damianList.addToPosition(2, "Added");
+        damianList.add(2, "Added");
         assertThat(damianList.get(2)).isEqualTo("Added");
     }
 
@@ -99,12 +99,12 @@ public class DamianListTest {
         damianList.add("Roi2");
         damianList.add("Roi3");
         damianList.add("Roi4");
-        damianList.addToPosition(5, "Roi5");
+        damianList.add(5, "Roi5");
         damianList.add("Roi6");
         damianList.add("Roi7");
         damianList.add("Roi8");
         damianList.add("Roi9");
-        damianList.addToPosition(3, "Roi10");
+        damianList.add(3, "Roi10");
         assertThat(damianList.get(19)).isEqualTo(null);
     }
 
@@ -112,7 +112,21 @@ public class DamianListTest {
     public void whenAddToPositionGreaterThanSize_ThenThrowException() {
         damianList.add("Roi0");
         damianList.add("Roi1");
-        damianList.addToPosition(6, "Error");
+        damianList.add(6, "Error");
     }
 
+    @Test
+    public void name() {
+
+
+        DamianNode<Integer> node1 = new DamianNode<>(123);
+        DamianNode<Integer> node2 = new DamianNode<>(312);
+
+
+        System.out.println(node1 == node2);
+        System.out.println(node1.equals(node2));
+
+
+        System.out.println(node1.toString());
+    }
 }

@@ -21,15 +21,7 @@ public class DamianList<T> {
         data[size++] = value;
     }
 
-    private T[] grow() {
-        T[] copy = (T[]) new Object[data.length * 2];
-        for (int i = 0; i < data.length; i++) {
-            copy[i] = data[i];
-        }
-        return copy;
-    }
-
-    public void addToPosition(int position, T value) {
+    public void add(int position, T value) {
         if (position > size || position < 0) {
             throw new IndexOutOfBoundsException("Wrong index " + position);
         }
@@ -64,13 +56,7 @@ public class DamianList<T> {
         }
     }
 
-    private void checkBounds(int position) {
-        if (position > data.length || position < 0) {
-            throw new IndexOutOfBoundsException("Wrong index " + position);
-        }
-    }
-
-    public boolean contains(String name) {
+    public boolean contains(T name) {
         for (int i = 0; i < size; i++) {
             if (data[i].equals(name)) {
                 return true;
@@ -83,4 +69,44 @@ public class DamianList<T> {
         return data[position];
     }
 
+    private void checkBounds(int position) {
+        if (position > data.length || position < 0) {
+            throw new IndexOutOfBoundsException("Wrong index " + position);
+        }
+    }
+
+
+    private T[] grow() {
+        T[] copy = (T[]) new Object[data.length * 2];
+        for (int i = 0; i < data.length; i++) {
+            copy[i] = data[i];
+        }
+        return copy;
+    }
 }
+
+
+/* //TODO THIS
+    int size();
+    boolean isEmpty();
+    boolean contains(Object o);
+    boolean add(E e);
+    void add(int index, E element);
+    boolean remove(Object o);
+    void clear();
+    boolean equals(Object o);
+    E get(int index);
+    E set(int index, E element);
+    E remove(int index);
+    int indexOf(Object o);
+    int lastIndexOf(Object o);
+
+
+    boolean containsAll(Collection<?> c);
+    boolean addAll(Collection<? extends E> c);
+    boolean addAll(int index, Collection<? extends E> c);
+    boolean removeAll(Collection<?> c);
+
+ */
+
+

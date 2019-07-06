@@ -1,11 +1,10 @@
 package datastructures;
 
-public class DamianStack<T> {
-
+public class DamianStack<T> { //TODO MAKE DAMIANSTACK A SUBCLASS OF DAMIANLIST
 
     private T[] data;
     private int size = 0;
-    private final int DEFAULT_CAPACITY = 10;
+    private static final int DEFAULT_CAPACITY = 10;
 
     public DamianStack() {
         this.data = (T[]) new Object[DEFAULT_CAPACITY];
@@ -15,7 +14,7 @@ public class DamianStack<T> {
         return size;
     }
 
-    public void addToPosition(int position, T value) {
+    public void add(int position, T value) {
         if (position > size || position < 0) {
             throw new IndexOutOfBoundsException("Wrong index " + position);
         }
@@ -56,7 +55,7 @@ public class DamianStack<T> {
     }
 
     public boolean contains(T object) {
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (data[i] == object) {
                 return true;
             }
@@ -69,5 +68,6 @@ public class DamianStack<T> {
     }
 
 }
+
 
 
