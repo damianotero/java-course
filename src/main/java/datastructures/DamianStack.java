@@ -1,48 +1,23 @@
 package datastructures;
 
-public class DamianStack<T> extends DamianList{
+import java.util.Stack;
 
-    private T[] data = (T[]) super.data;
-    private static final int DEFAULT_CAPACITY = 10;
+public class DamianStack<T> extends DamianList<T>{
 
     public DamianStack() {
-//        this.data = (T[]) new Object[DEFAULT_CAPACITY];
-        super(DEFAULT_CAPACITY);
+        super();
     }
 
-    public int size() {
-        return size;
-    }
 
-//    public void add(int position, T value) {
-//        if (position > size || position < 0) {
-//            throw new IndexOutOfBoundsException("Wrong index " + position);
-//        }
-//        if (size == data.length) {
-//            grow();
-//        }
-//        for (int i = size - 1; i > position; i--) {
-//            data[i] = data[i - 1];
-//        }
-//        data[position] = value;
-//        size++;
-//    }
 
     public void push(T object) {
         if (size == data.length) {
-            grow();
+            data=grow();
         }
         data[size] = object;
         size++;
     }
 
-    private void grow() {
-        T[] data2 = (T[]) new Object[data.length * 2];
-        for (int i = 0; i < data.length; i++) {
-            data2[i] = data[i];
-        }
-        data = data2;
-    }
 
     public T pop() {
         if (data[0] == null) {
@@ -54,18 +29,6 @@ public class DamianStack<T> extends DamianList{
         return object;
     }
 
-//    public boolean contains(T object) {
-//        for (int i = 0; i < size; i++) {
-//            if (data[i] == object) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-    public T get(int position) {
-        return data[position];
-    }
 
 }
 

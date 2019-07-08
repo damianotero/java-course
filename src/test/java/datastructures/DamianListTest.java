@@ -116,17 +116,105 @@ public class DamianListTest {
     }
 
     @Test
-    public void name() {
+    public void whenIsEmpty_ThenReturnTrue() {
+        assertThat(damianList.isEmpty()).isEqualTo(true);
+        damianList.add("Roi0");
+        assertThat(damianList.isEmpty()).isEqualTo(false);
+
+    }
+
+    @Test
+    public void whenClearList_ThenIsEmpty() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.clear();
+        assertThat(damianList.get(1)).isEqualTo(null);
+        assertThat(damianList.size()).isEqualTo(0);
+    }
+
+    @Test
+    public void whenSetPosition_thenPositionChanges() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.add("Roi2");
+        damianList.add("Roi3");
+        damianList.add("Roi4");
+        damianList.set(1, "setted");
+        assertThat(damianList.get(1)).isEqualTo("setted");
+    }
+
+    @Test
+    public void whenIndexOf_ThenReturnValuesIndex() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.add("Roi2");
+        damianList.add("Roi3");
+        assertThat(damianList.indexOf("Roi2")).isEqualTo(2);
+        assertThat(damianList.indexOf("NoIndex")).isEqualTo(-1);
+    }
+
+    @Test
+    public void whenLastIndexOf_ReturnTheLastPosition() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.add("Roi0");
+        damianList.add("Roi3");
+        damianList.add("Roi0");
+        damianList.add("Roi5");
+        assertThat(damianList.lastIndexOf("Roi0")).isEqualTo(4);
+        assertThat(damianList.lastIndexOf("NoIndex")).isEqualTo(-1);
+    }
+
+    @Test
+    public void ifThisObjectEqualsObject_ThenReturnTrue() {
+        DamianList<String> damianList2 = new DamianList<>();
+        assertThat(damianList.equals(damianList2)).isEqualTo(true);
+
+    }
+
+    @Test
+    public void whenContainsAllElements_ReturnTrue() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.add("Roi2");
+        damianList.add("Roi3");
+        DamianList<String> damianList2 = new DamianList<>();
+        damianList2.add("Roi2");
+        damianList2.add("Roi1");
+        damianList2.add("Roi0");
+        damianList2.add("Roi3");
+        assertThat(damianList2.containsAll(damianList)).isEqualTo(true);
+        damianList.add("NotContained");
+        assertThat(damianList2.containsAll(damianList)).isEqualTo(false);
+    }
+
+    @Test
+    public void whenAddAll_ThenContainsAllElementsAdded() {
+        damianList.add("Element");
+        DamianList<String> damianList2 = new DamianList<>();
+        damianList2.add("Roi2");
+        damianList2.add("Roi1");
+        damianList2.add("Roi0");
+        damianList2.add("Roi3");
+        damianList.addAll(damianList2);
+        assertThat(damianList.containsAll(damianList2)).isEqualTo(true);
+    }
+
+    @Test
+    public void whenRemoveAllElementsOfSecondList_ThenListDoesNotContainThatElements() {
+        damianList.add("Roi0");
+        damianList.add("Roi1");
+        damianList.add("Roi2");
+        damianList.add("Roi3");
+        DamianList<String> damianList2 = new DamianList<>();
+        damianList2.add("Roi1");
+        damianList2.add("Roi0");
+        damianList.removeAll(damianList2);
+        assertThat(damianList.contains("Roi3")).isEqualTo(true);
+        assertThat(damianList.contains("Roi1")).isEqualTo(false);
+        assertThat(damianList.contains("Roi0")).isEqualTo(false);
 
 
-        DamianNode<Integer> node1 = new DamianNode<>(123);
-        DamianNode<Integer> node2 = new DamianNode<>(312);
 
-
-        System.out.println(node1 == node2);
-        System.out.println(node1.equals(node2));
-
-
-        System.out.println(node1.toString());
     }
 }

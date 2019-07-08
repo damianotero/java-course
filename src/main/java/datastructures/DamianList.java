@@ -1,10 +1,12 @@
 package datastructures;
 
+import java.util.Arrays;
+
 public class DamianList<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
-    public T[] data;
-     int size = 0;
+    protected T[] data;
+    protected int size = 0;
 
     public DamianList() {
         this(DEFAULT_CAPACITY);
@@ -58,7 +60,7 @@ public class DamianList<T> {
 
     public boolean contains(T object) {
         for (int i = 0; i < size; i++) {
-            if (data[i]==object) {
+            if (data[i] == object) {
                 return true;
             }
         }
@@ -76,7 +78,7 @@ public class DamianList<T> {
     }
 
 
-    private T[] grow() {
+    protected T[] grow() {
         T[] copy = (T[]) new Object[data.length * 2];
         for (int i = 0; i < data.length; i++) {
             copy[i] = data[i];
@@ -84,28 +86,106 @@ public class DamianList<T> {
         return copy;
     }
 
+    public boolean isEmpty() {
+        if (size == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void clear() {
+        if (!isEmpty()) {
+            T[] data2 = (T[]) new Object[DEFAULT_CAPACITY];
+            data = data2;
+            size = 0;
+        }
+    }
 
 
+    public void set(int position, T value) {
+        checkBounds(position);
+        data[position] = value;
+    }
+
+    public int indexOf(T value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int lastIndexOf(T value) {
+        for (int i = size; i > 0; i--) {
+            if (data[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean containsAll(DamianList<T> list) {
+        for (int i = 0; i < list.size; i++) {
+            if (!contains(list.data[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void addAll(DamianList<T> list) {
+        if (list.size != 0)
+            for (int i = 0; i < list.size; i++) {
+                add(list.data[i]);
+            }
+    }
+
+    public void removeAll(DamianList<T> list) {
+        for (int i = 0; i < list.size(); i++) {
+            T t = list.data[i];
+            if (contains(t)) {
+                remove(indexOf(t));
+            }
+        }
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DamianList<?> that = (DamianList<?>) o;
+        return Arrays.equals(data, that.data);
+    }
+
+//    @Override
+//    public int hashCode() {
+//        return Arrays.hashCode(data);
+//    }
 }
 
 
+
+
 /* //TODO THIS
-    int size();
-    boolean isEmpty();
-    boolean contains(Object o);
-    boolean add(E e);
-    void add(int index, E element);
-    boolean remove(Object o);
-    void clear();
-    boolean equals(Object o);
-    E get(int index);
-    E set(int index, E element);
-    E remove(int index);
-    int indexOf(Object o);
-    int lastIndexOf(Object o);
+    int size();    CHECK
+    boolean isEmpty(); CHECK
+    boolean contains(Object o); CHECK
+    boolean add(E e); CHECK
+    void add(int index, E element); CHECK
+    boolean remove(Object o); CHECK
+    void clear();    CHECK
+    boolean equals(Object o); check
+    E get(int index); check
+    E set(int index, E element); check
+    E remove(int index); check
+    int indexOf(Object o); check
+    int lastIndexOf(Object o); check
 
 
-    boolean containsAll(Collection<?> c);
+    boolean containsAll(Collection<?> c);  CHECK
     boolean addAll(Collection<? extends E> c);
     boolean addAll(int index, Collection<? extends E> c);
     boolean removeAll(Collection<?> c);
