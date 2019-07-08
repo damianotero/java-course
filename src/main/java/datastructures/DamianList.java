@@ -3,8 +3,8 @@ package datastructures;
 public class DamianList<T> {
 
     private static final int DEFAULT_CAPACITY = 10;
-    private T[] data;
-    private int size = 0;
+    public T[] data;
+     int size = 0;
 
     public DamianList() {
         this(DEFAULT_CAPACITY);
@@ -56,9 +56,9 @@ public class DamianList<T> {
         }
     }
 
-    public boolean contains(T name) {
+    public boolean contains(T object) {
         for (int i = 0; i < size; i++) {
-            if (data[i].equals(name)) {
+            if (data[i]==object) {
                 return true;
             }
         }
@@ -83,6 +83,9 @@ public class DamianList<T> {
         }
         return copy;
     }
+
+
+
 }
 
 

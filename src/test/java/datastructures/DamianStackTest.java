@@ -15,7 +15,7 @@ public class DamianStackTest {
         myIntStack.push(1);
         myIntStack.push(2);
 
-        assertThat(myIntStack.getSize()).isEqualTo(3);
+        assertThat(myIntStack.size()).isEqualTo(3);
     }
 
 
@@ -26,7 +26,7 @@ public class DamianStackTest {
         myIntStack.push(1);
         myIntStack.push(2);
         myIntStack.pop();
-        assertThat(myIntStack.getSize()).isEqualTo(2);
+        assertThat(myIntStack.size()).isEqualTo(2);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class DamianStackTest {
         myIntStack.push(0);
         myIntStack.push(1);
         myIntStack.push(2);
-        assertThat(myIntStack.getSize()).isEqualTo(3);
+        assertThat(myIntStack.size()).isEqualTo(3);
     }
 
     @Test(expected = RuntimeException.class)
@@ -83,7 +83,7 @@ public class DamianStackTest {
         myIntStack.push(2);
         myIntStack.push(0);
         myIntStack.add(2, 0);
-        assertThat(myIntStack.getSize()).isEqualTo(11);
+        assertThat(myIntStack.size()).isEqualTo(11);
     }
 
     @Test
@@ -110,6 +110,6 @@ public class DamianStackTest {
         myIntStack.push(2);
         myIntStack.push(0);
         myIntStack.push( 0);
-        assertThat(myIntStack.getSize()).isEqualTo(11);
+        assertThat(myIntStack.size()).isEqualTo(11);
     }
 }

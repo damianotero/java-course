@@ -1,32 +1,32 @@
 package datastructures;
 
-public class DamianStack<T> { //TODO MAKE DAMIANSTACK A SUBCLASS OF DAMIANLIST
+public class DamianStack<T> extends DamianList{
 
-    private T[] data;
-    private int size = 0;
+    private T[] data = (T[]) super.data;
     private static final int DEFAULT_CAPACITY = 10;
 
     public DamianStack() {
-        this.data = (T[]) new Object[DEFAULT_CAPACITY];
+//        this.data = (T[]) new Object[DEFAULT_CAPACITY];
+        super(DEFAULT_CAPACITY);
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 
-    public void add(int position, T value) {
-        if (position > size || position < 0) {
-            throw new IndexOutOfBoundsException("Wrong index " + position);
-        }
-        if (size == data.length) {
-            grow();
-        }
-        for (int i = size - 1; i > position; i--) {
-            data[i] = data[i - 1];
-        }
-        data[position] = value;
-        size++;
-    }
+//    public void add(int position, T value) {
+//        if (position > size || position < 0) {
+//            throw new IndexOutOfBoundsException("Wrong index " + position);
+//        }
+//        if (size == data.length) {
+//            grow();
+//        }
+//        for (int i = size - 1; i > position; i--) {
+//            data[i] = data[i - 1];
+//        }
+//        data[position] = value;
+//        size++;
+//    }
 
     public void push(T object) {
         if (size == data.length) {
@@ -54,14 +54,14 @@ public class DamianStack<T> { //TODO MAKE DAMIANSTACK A SUBCLASS OF DAMIANLIST
         return object;
     }
 
-    public boolean contains(T object) {
-        for (int i = 0; i < size; i++) {
-            if (data[i] == object) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    public boolean contains(T object) {
+//        for (int i = 0; i < size; i++) {
+//            if (data[i] == object) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 
     public T get(int position) {
         return data[position];
