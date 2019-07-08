@@ -109,7 +109,5 @@ public class DamianStackTest {
         myIntStack.push(9);
         myIntStack.push( 10);
         assertThat(myIntStack.size()).isEqualTo(11);
-
-
     }
 }

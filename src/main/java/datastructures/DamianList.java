@@ -24,9 +24,8 @@ public class DamianList<T> {
     }
 
     public void add(int position, T value) {
-        if (position > size || position < 0) {
-            throw new IndexOutOfBoundsException("Wrong index " + position);
-        }
+        checkBounds(position);
+
         if (size == data.length) {
             data = grow();
         }
@@ -38,29 +37,20 @@ public class DamianList<T> {
         size++;
     }
 
-    public int size() {
-        return size;
-    }
-
-
     public void remove(int position) {
-
         checkBounds(position);
 
-        if (data[position] == null) {
-            throw new RuntimeException(position + " is empty!");
-        } else {
-            for (int i = position; i < data.length - 1; i++) {
-                data[i] = data[i + 1];
-            }
-            data[data.length - 1] = null;
-            size--;
+        for (int i = position; i < size()-1; i++) {
+            data[i] = data[i + 1];
         }
+        data[size()] = null;
+        size--;
+
     }
 
     public boolean contains(T object) {
-        for (int i = 0; i < size; i++) {
-            if (data[i] == object) {
+        for (int i = 0; i < size(); i++) {
+            if (data[i].equals(object)) {
                 return true;
             }
         }
@@ -71,10 +61,8 @@ public class DamianList<T> {
         return data[position];
     }
 
-    private void checkBounds(int position) {
-        if (position > data.length || position < 0) {
-            throw new IndexOutOfBoundsException("Wrong index " + position);
-        }
+    public int size() {
+        return size;
     }
 
 
@@ -110,7 +98,7 @@ public class DamianList<T> {
 
     public int indexOf(T value) {
         for (int i = 0; i < size; i++) {
-            if (data[i] == value) {
+            if (data[i].equals(value)) {
                 return i;
             }
         }
@@ -127,8 +115,8 @@ public class DamianList<T> {
     }
 
     public boolean containsAll(DamianList<T> list) {
-        for (int i = 0; i < list.size; i++) {
-            if (!contains(list.data[i])) {
+        for (int i = 0; i < list.size(); i++) {
+            if (!contains(list.get(i))) {
                 return false;
             }
         }
@@ -136,60 +124,54 @@ public class DamianList<T> {
     }
 
     public void addAll(DamianList<T> list) {
-        if (list.size != 0)
-            for (int i = 0; i < list.size; i++) {
-                add(list.data[i]);
+        if (list.size() != 0)
+            for (int i = 0; i < list.size(); i++) {
+                add(list.get(i));
             }
     }
 
     public void removeAll(DamianList<T> list) {
         for (int i = 0; i < list.size(); i++) {
-            T t = list.data[i];
+            T t = list.get(i);
             if (contains(t)) {
                 remove(indexOf(t));
             }
         }
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DamianList<?> that = (DamianList<?>) o;
-        return Arrays.equals(data, that.data);
+
+        if (size != that.size()) {
+            return false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (!data[i].equals( that.get(i))) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-//    @Override
-//    public int hashCode() {
-//        return Arrays.hashCode(data);
-//    }
+    @Override
+    public String toString() {
+        return "DamianList{" +
+                "data=" + Arrays.toString(data) +
+                ", size=" + size +
+                '}';
+    }
+
+    private void checkBounds(int position) {
+        if (position >= size || position < 0) {
+            throw new IndexOutOfBoundsException("Wrong index " + position);
+        }
+    }
+
 }
-
-
-
-
-/* //TODO THIS
-    int size();    CHECK
-    boolean isEmpty(); CHECK
-    boolean contains(Object o); CHECK
-    boolean add(E e); CHECK
-    void add(int index, E element); CHECK
-    boolean remove(Object o); CHECK
-    void clear();    CHECK
-    boolean equals(Object o); check
-    E get(int index); check
-    E set(int index, E element); check
-    E remove(int index); check
-    int indexOf(Object o); check
-    int lastIndexOf(Object o); check
-
-
-    boolean containsAll(Collection<?> c);  CHECK
-    boolean addAll(Collection<? extends E> c);
-    boolean addAll(int index, Collection<? extends E> c);
-    boolean removeAll(Collection<?> c);
-
- */
 
 
