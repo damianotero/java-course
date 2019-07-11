@@ -11,44 +11,56 @@ public class DamianLinkedListTest {
     @Test
     public void whenAdding3Items_ThenReturnSize3() {
 
-        integerDamianLinkedList.add(1);
-        integerDamianLinkedList.add(2);
-        integerDamianLinkedList.add(3);
-        assertThat(integerDamianLinkedList.getSize()).isEqualTo(3);
+        addThreeElements();
+        assertThat(integerDamianLinkedList.size()).isEqualTo(3);
     }
 
     @Test
     public void whenGet_ThenReturnPosition() {
-        integerDamianLinkedList.add(1);
-        integerDamianLinkedList.add(2);
-        integerDamianLinkedList.add(3);
+        addThreeElements();
         assertThat(integerDamianLinkedList.get(2)).isEqualTo(3);
     }
 
     @Test
     public void whenRemoveAnItem_ThenNextPositionChanges() {
-        integerDamianLinkedList.add(1);
-        integerDamianLinkedList.add(2);
-        integerDamianLinkedList.add(3);
+        addThreeElements();
         integerDamianLinkedList.remove(1);
         assertThat(integerDamianLinkedList.get(1)).isEqualTo(3);
     }
 
     @Test
+    public void whenRemoveTheFirstItem_TheNextPositionsChanges() {
+        addThreeElements();
+        integerDamianLinkedList.remove(0);
+        assertThat(integerDamianLinkedList.get(0)).isEqualTo(2);
+        assertThat(integerDamianLinkedList.get(1)).isEqualTo(3);
+        assertThat(integerDamianLinkedList.size()).isEqualTo(2);
+
+    }
+
+    @Test
     public void whenAddToPosition_ThenGetReturnsOk() {
-        integerDamianLinkedList.add(1);
-        integerDamianLinkedList.add(2);
-        integerDamianLinkedList.add(3);
+        addThreeElements();
         integerDamianLinkedList.add(2,99);
         assertThat(integerDamianLinkedList.get(2)).isEqualTo(99);
     }
 
     @Test
-    public void whenAddtoPosition0_ThenHeadEqualsTheValue() {
+    public void whenAddToPosition0_ThenHeadEqualsTheValue() {
+        addThreeElements();
+        integerDamianLinkedList.add(0,99);
+        assertThat(integerDamianLinkedList.get(0)).isEqualTo(99);
+    }
+
+    @Test (expected = RuntimeException.class)
+    public void whenRemoveItemLessThanZero_ThenThrowException() {
+        addThreeElements();
+        integerDamianLinkedList.remove(-11);
+    }
+
+    private void addThreeElements() {
         integerDamianLinkedList.add(1);
         integerDamianLinkedList.add(2);
         integerDamianLinkedList.add(3);
-        integerDamianLinkedList.add(0,99);
-        assertThat(integerDamianLinkedList.get(0)).isEqualTo(99);
     }
 }

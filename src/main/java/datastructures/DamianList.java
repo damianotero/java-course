@@ -148,7 +148,6 @@ public class DamianList<T> {
         if (size != that.size()) {
             return false;
         }
-
         for (int i = 0; i < size; i++) {
             if (!data[i].equals( that.get(i))) {
                 return false;

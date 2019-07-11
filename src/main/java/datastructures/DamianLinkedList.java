@@ -36,6 +36,9 @@ public class DamianLinkedList<T> {
     }
 
     public DamianNode<T> getNode(int position) {
+        if (position < 0 || position > size()) {
+            throw new IndexOutOfBoundsException("Wrong index " + position);
+        }
         DamianNode<T> t = head;
         for (int i = 0; i < position; i++) {
             t = t.getNext();
@@ -44,12 +47,21 @@ public class DamianLinkedList<T> {
     }
 
     public void remove(int position) {
-        DamianNode<T> t = getNode(position - 1);
-        t.setNext(t.getNext().getNext());
+        if (position<0){
+            throw new IndexOutOfBoundsException("Wrong index " + position);
+
+        }
+        if (position == 0) {
+            head = getNode(position).getNext();
+        } else {
+            DamianNode<T> t = getNode(position - 1);
+            t.setNext(t.getNext().getNext());
+        }
+
         size--;
     }
 
-    public int getSize() {
+    public int size() {
         return size;
     }
 }

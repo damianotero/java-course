@@ -1,28 +1,47 @@
 package datastructures;
 
-public class DamianQueue<T> extends DamianList<T> {
+public class DamianQueue<T> {
+
+    private DamianLinkedList<T> data;
 
 
     public DamianQueue() {
-        super();
+        this.data = new DamianLinkedList();
     }
 
+
+
     public T poll() {
-        if (size==0){
+        if (data.size() == 0) {
             throw new IndexOutOfBoundsException("Empty List!!");
         }
-        T t = get(0);
-        for (int i = 0; i < size() - 1; i++) {
-            data[i] = data[i + 1];
-        }
-        data[size]=null;
-        size--;
+        T t = data.get(0);
+        data.remove(0);
         return t;
     }
 
     public T peek() {
-        return get(0);
+        return data.get(0);
     }
 
 
+    public void add(T value) {
+        data.add(value);
+    }
+
+    public void add(int position, T value) {
+        data.add(position, value);
+    }
+
+    public void remove(int position) {
+        data.remove(position);
+    }
+
+    public T get(int position) {
+        return data.get(position);
+    }
+
+    public int size() {
+        return data.size();
+    }
 }
